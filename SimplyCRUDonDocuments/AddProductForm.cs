@@ -17,7 +17,7 @@ namespace SimplyCRUDonDocuments
             InitializeComponent();
         }
         DocsModelContext model = new DocsModelContext();
-
+        int maxValue;
 
         public void ClearProductFields()
         {
@@ -26,17 +26,28 @@ namespace SimplyCRUDonDocuments
             NettoPriceTextBox.Text = "";
             BruttoPriceTextBox.Text = "";
         }
-        // przenies iddockumentu jako klucz obcy!!
+
+        public void FillProdcutDataGrid(DataGridView data, int actualId)
+        {
+            data.DataSource=model.Articles.Select(n => new
+            {
+                n.DocumentId,
+                n.NazwaArtykulu,
+                n.LiczbaArtykulu,
+                n.CenaNettoArtykulu,
+                n.CenaBruttoArtykulu
+            })
+                .Where(n => n.DocumentId == actualId).ToList();
+        }
+        public void RemoveRecord()
+        { }
+
         private void AcceptProductButton_Click(object sender, EventArgs e)
         {
 
                 using (var dbProd = new DocsModelContext())
                 {
- 
-                int maxValue = dbProd.Headers.Max(x => x.DocumentId);
-                //var result = dbProd.Headers.First(x => x.DocumentId == maxValue).ToString();
-
-
+                maxValue = dbProd.Headers.Max(x => x.DocumentId);
                 dbProd.Articles.Add(new DocumentPositions
                 {
                     NazwaArtykulu = NameProductTextBox.Text,
@@ -51,18 +62,18 @@ namespace SimplyCRUDonDocuments
                     DialogResult dialogResult = MessageBox.Show("Czy kontynuować dodawanie produktów?", "Komunikat", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        //do something
+
                     }
                     else if (dialogResult == DialogResult.No)
                     {
                         this.Close();
                     }
                 }
-        //}
-        //    catch
-        //    {
-        //        MessageBox.Show("Uzupełnij wszystkie pola zanim dodasz produkt", "UWAGA!", 0);
-        //    }
-}
+        }
+
+        private void CancelProdcutButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

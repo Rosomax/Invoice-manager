@@ -134,6 +134,7 @@
             this.CancelProdcutButton.TabIndex = 9;
             this.CancelProdcutButton.Text = "Anuluj";
             this.CancelProdcutButton.UseVisualStyleBackColor = false;
+            this.CancelProdcutButton.Click += new System.EventHandler(this.CancelProdcutButton_Click);
             // 
             // AddProductForm
             // 

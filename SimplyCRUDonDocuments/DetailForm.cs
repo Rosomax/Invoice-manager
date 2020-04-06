@@ -13,7 +13,7 @@ namespace SimplyCRUDonDocuments
 {
     public partial class DetailForm : Form
     {
-        private PrintDocument docToPrint;
+        private PrintDocument docToPrint = new PrintDocument();
 
         public DetailForm()
         {
@@ -21,27 +21,22 @@ namespace SimplyCRUDonDocuments
             
         }
         DocsModelContext model = new DocsModelContext();
-        public void DeliverInfo(string name,string  date,string nrKlienta,
+        public void DeliverInfo(int Id, string name,string  date,string nrKlienta,
             string cenaNetto,string  cenaBrutto)
         {
+            IddocLabelToFill.Text = "Numer dokumentu: " + Id.ToString();
             DatailNameLabelToFill.Text = name;
-            DetailDateLabelToFill.Text = date;
-            DetailIDKlientaToFill.Text = nrKlienta;
+            DetailDateLabelToFill.Text = "Data wystawienia: \n"+date;
+            DetailIDKlientaToFill.Text = "Numer klienta: "+ nrKlienta;
             DetailNettoToFill.Text = cenaNetto;
             DetailBruttoToFill.Text = cenaBrutto;
         }
-        internal void Show(DocumentHeader header)
-        {
-            DatailNameLabelToFill.Text = header.Nazwa.ToString();
-            DetailDateLabelToFill.Text = header.Data.ToString();
-            DetailIDKlientaToFill.Text = header.NumerKlienta.ToString();
-            DetailNettoToFill.Text = header.CenaNetto.ToString();
-            DetailBruttoToFill.Text = header.ToString();
-            FillProductDetailGrid(header);
-        }
 
-        public void FillProductDetailGrid(DocumentHeader arg)
+        
+
+        public void FillProductDetailGrid(int id)
         {
+            
             DetailDataGrid.DataSource = model.Articles.Select(o => new
             {
                 o.NazwaArtykulu,
@@ -49,12 +44,21 @@ namespace SimplyCRUDonDocuments
                 o.CenaNettoArtykulu,
                 o.CenaBruttoArtykulu,
                 o.DocumentId
-            }).Where(o => o.DocumentId == 15).ToList();
+            }).Where(o => o.DocumentId == id).ToList();
+            DetailDataGrid.Columns["DocumentId"].Visible = false;
+            DetailDataGrid.Columns[0].HeaderCell.Value = "Nazwa";
+            DetailDataGrid.Columns[1].HeaderCell.Value = "Liczba sztuk";
+            DetailDataGrid.Columns[2].HeaderCell.Value = "Cena netto";
+            DetailDataGrid.Columns[3].HeaderCell.Value = "Cena brutto";
         }
 
-        private void Print_Click(object sender, EventArgs e)
+        private void ReturnButton_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
 
+        private void PrintButton_Click(object sender, EventArgs e)
+        {
             printDialog1.AllowSomePages = true;
 
             printDialog1.ShowHelp = true;
@@ -63,13 +67,26 @@ namespace SimplyCRUDonDocuments
 
             DialogResult result = printDialog1.ShowDialog();
 
-            // If the result is OK then print the document.
             if (result == DialogResult.OK)
             {
                 docToPrint.Print();
             }
         }
+        private void document_PrintPage(object sender, PrintPageEventArgs e)
+        {
 
+            // Insert code to render the page here.
+            // This code will be called when the control is drawn.
 
+            // The following code will render a simple
+            // message on the printed document.
+            string text = "In document_PrintPage method.";
+            System.Drawing.Font printFont = new System.Drawing.Font
+                ("Arial", 35, System.Drawing.FontStyle.Regular);
+
+            // Draw the content.
+            e.Graphics.DrawString(text, printFont,
+                System.Drawing.Brushes.Black, 10, 10);
+        }
     }
 }

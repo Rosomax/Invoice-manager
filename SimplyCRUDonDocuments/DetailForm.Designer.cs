@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailForm));
             this.DatailNameLabelToFill = new System.Windows.Forms.Label();
-            this.DetailDateLabel = new System.Windows.Forms.Label();
-            this.DetailsIdKlientaLabel = new System.Windows.Forms.Label();
             this.DetailDateLabelToFill = new System.Windows.Forms.Label();
             this.DetailIDKlientaToFill = new System.Windows.Forms.Label();
             this.DetailDataGrid = new System.Windows.Forms.DataGridView();
@@ -44,6 +42,9 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.Menu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Print = new System.Windows.Forms.ToolStripMenuItem();
+            this.IddocLabelToFill = new System.Windows.Forms.Label();
+            this.PrintButton = new System.Windows.Forms.Button();
+            this.ReturnButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DetailDataGrid)).BeginInit();
             this.Menu.SuspendLayout();
             this.SuspendLayout();
@@ -51,38 +52,20 @@
             // DatailNameLabelToFill
             // 
             this.DatailNameLabelToFill.AutoSize = true;
-            this.DatailNameLabelToFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DatailNameLabelToFill.Location = new System.Drawing.Point(216, 31);
+            this.DatailNameLabelToFill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DatailNameLabelToFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.DatailNameLabelToFill.Location = new System.Drawing.Point(178, 101);
             this.DatailNameLabelToFill.Name = "DatailNameLabelToFill";
-            this.DatailNameLabelToFill.Size = new System.Drawing.Size(76, 25);
+            this.DatailNameLabelToFill.Size = new System.Drawing.Size(92, 31);
             this.DatailNameLabelToFill.TabIndex = 0;
             this.DatailNameLabelToFill.Text = "label1";
-            // 
-            // DetailDateLabel
-            // 
-            this.DetailDateLabel.AutoSize = true;
-            this.DetailDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DetailDateLabel.Location = new System.Drawing.Point(12, 84);
-            this.DetailDateLabel.Name = "DetailDateLabel";
-            this.DetailDateLabel.Size = new System.Drawing.Size(152, 20);
-            this.DetailDateLabel.TabIndex = 1;
-            this.DetailDateLabel.Text = "Data Wystawienia";
-            // 
-            // DetailsIdKlientaLabel
-            // 
-            this.DetailsIdKlientaLabel.AutoSize = true;
-            this.DetailsIdKlientaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DetailsIdKlientaLabel.Location = new System.Drawing.Point(43, 137);
-            this.DetailsIdKlientaLabel.Name = "DetailsIdKlientaLabel";
-            this.DetailsIdKlientaLabel.Size = new System.Drawing.Size(121, 20);
-            this.DetailsIdKlientaLabel.TabIndex = 2;
-            this.DetailsIdKlientaLabel.Text = "Numer Klienta";
+            this.DatailNameLabelToFill.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DetailDateLabelToFill
             // 
             this.DetailDateLabelToFill.AutoSize = true;
             this.DetailDateLabelToFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DetailDateLabelToFill.Location = new System.Drawing.Point(199, 84);
+            this.DetailDateLabelToFill.Location = new System.Drawing.Point(338, 6);
             this.DetailDateLabelToFill.Name = "DetailDateLabelToFill";
             this.DetailDateLabelToFill.Size = new System.Drawing.Size(152, 20);
             this.DetailDateLabelToFill.TabIndex = 3;
@@ -91,15 +74,16 @@
             // DetailIDKlientaToFill
             // 
             this.DetailIDKlientaToFill.AutoSize = true;
-            this.DetailIDKlientaToFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DetailIDKlientaToFill.Location = new System.Drawing.Point(199, 137);
+            this.DetailIDKlientaToFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.DetailIDKlientaToFill.Location = new System.Drawing.Point(12, 37);
             this.DetailIDKlientaToFill.Name = "DetailIDKlientaToFill";
-            this.DetailIDKlientaToFill.Size = new System.Drawing.Size(121, 20);
+            this.DetailIDKlientaToFill.Size = new System.Drawing.Size(104, 16);
             this.DetailIDKlientaToFill.TabIndex = 4;
             this.DetailIDKlientaToFill.Text = "Numer Klienta";
             // 
             // DetailDataGrid
             // 
+            this.DetailDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DetailDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DetailDataGrid.Location = new System.Drawing.Point(16, 205);
             this.DetailDataGrid.Name = "DetailDataGrid";
@@ -176,7 +160,36 @@
             this.Print.Name = "Print";
             this.Print.Size = new System.Drawing.Size(74, 22);
             this.Print.Text = "Print";
-            this.Print.Click += new System.EventHandler(this.Print_Click);
+            // 
+            // IddocLabelToFill
+            // 
+            this.IddocLabelToFill.AutoSize = true;
+            this.IddocLabelToFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.IddocLabelToFill.Location = new System.Drawing.Point(12, 9);
+            this.IddocLabelToFill.Name = "IddocLabelToFill";
+            this.IddocLabelToFill.Size = new System.Drawing.Size(51, 16);
+            this.IddocLabelToFill.TabIndex = 10;
+            this.IddocLabelToFill.Text = "label1";
+            // 
+            // PrintButton
+            // 
+            this.PrintButton.Location = new System.Drawing.Point(293, 580);
+            this.PrintButton.Name = "PrintButton";
+            this.PrintButton.Size = new System.Drawing.Size(114, 37);
+            this.PrintButton.TabIndex = 11;
+            this.PrintButton.Text = "Drukuj";
+            this.PrintButton.UseVisualStyleBackColor = true;
+            this.PrintButton.Click += new System.EventHandler(this.PrintButton_Click);
+            // 
+            // ReturnButton
+            // 
+            this.ReturnButton.Location = new System.Drawing.Point(85, 580);
+            this.ReturnButton.Name = "ReturnButton";
+            this.ReturnButton.Size = new System.Drawing.Size(114, 37);
+            this.ReturnButton.TabIndex = 12;
+            this.ReturnButton.Text = "Wróć";
+            this.ReturnButton.UseVisualStyleBackColor = true;
+            this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
             // 
             // DetailForm
             // 
@@ -184,6 +197,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(538, 629);
+            this.Controls.Add(this.ReturnButton);
+            this.Controls.Add(this.PrintButton);
+            this.Controls.Add(this.IddocLabelToFill);
             this.Controls.Add(this.DetailNettoToFill);
             this.Controls.Add(this.DetailBruttoToFill);
             this.Controls.Add(this.DetailBruttoLabel);
@@ -191,8 +207,6 @@
             this.Controls.Add(this.DetailDataGrid);
             this.Controls.Add(this.DetailIDKlientaToFill);
             this.Controls.Add(this.DetailDateLabelToFill);
-            this.Controls.Add(this.DetailsIdKlientaLabel);
-            this.Controls.Add(this.DetailDateLabel);
             this.Controls.Add(this.DatailNameLabelToFill);
             this.Name = "DetailForm";
             this.Text = "DetailForm";
@@ -206,8 +220,6 @@
         #endregion
 
         private System.Windows.Forms.Label DatailNameLabelToFill;
-        private System.Windows.Forms.Label DetailDateLabel;
-        private System.Windows.Forms.Label DetailsIdKlientaLabel;
         private System.Windows.Forms.Label DetailDateLabelToFill;
         private System.Windows.Forms.Label DetailIDKlientaToFill;
         private System.Windows.Forms.DataGridView DetailDataGrid;
@@ -219,5 +231,8 @@
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.ContextMenuStrip Menu;
         private System.Windows.Forms.ToolStripMenuItem Print;
+        private System.Windows.Forms.Label IddocLabelToFill;
+        private System.Windows.Forms.Button PrintButton;
+        private System.Windows.Forms.Button ReturnButton;
     }
 }

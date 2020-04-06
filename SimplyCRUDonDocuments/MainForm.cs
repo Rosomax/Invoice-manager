@@ -70,13 +70,19 @@ namespace SimplyCRUDonDocuments
               o.CenaNetto,
               o.CenaBrutto
             }).ToList();
+            MainDataGrid.Columns["DocumentId"].Visible = false;
+            MainDataGrid.Columns[1].HeaderCell.Value = "Tytuł faktury";
+            MainDataGrid.Columns[2].HeaderCell.Value = "Numer klienta";
+            MainDataGrid.Columns[3].HeaderCell.Value = "Data wystawienia";
+            MainDataGrid.Columns[4].HeaderCell.Value = "Kwota netto";
+            MainDataGrid.Columns[5].HeaderCell.Value = "Kwota brutto";
         }
-        
-        
+
         private void CreateButton_Click(object sender, EventArgs e)
         {
             CreateNewHeader form = new CreateNewHeader();
             form.Show();
+            
         }
         
         private void MainDetailsButton_Click(object sender, EventArgs e)
@@ -88,15 +94,46 @@ namespace SimplyCRUDonDocuments
                 {
                     int selectedRowIndex = MainDataGrid.SelectedCells[0].RowIndex;
                     SelectedRow = MainDataGrid.Rows[selectedRowIndex];
-                    Id = Convert.ToInt32(SelectedRow.Cells["DocumentID"].Value);
+                    int Id = Convert.ToInt32(SelectedRow.Cells["DocumentID"].Value);
                     string name = Convert.ToString(SelectedRow.Cells["Nazwa"].Value);
                     string date = Convert.ToString(SelectedRow.Cells["Data"].Value);
                     string nrKlienta = Convert.ToString(SelectedRow.Cells["NumerKlienta"].Value);
                     string cenaNetto = Convert.ToString(SelectedRow.Cells["CenaNetto"].Value);
                     string cenaBrutto = Convert.ToString(SelectedRow.Cells["CenaBrutto"].Value);
                     DetailForm formDet = new DetailForm();
-                    formDet.DeliverInfo(name, date, nrKlienta, cenaNetto, cenaBrutto);
+                    formDet.DeliverInfo(Id, name, date, nrKlienta, cenaNetto, cenaBrutto);
+                    formDet.FillProductDetailGrid(Id);
                     formDet.Show();
+                    FillGrid();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Nie zaznaczono żadnego dokumentu", "Błąd", 0);
+            }
+        }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            UpdateDocumentForm formUpD = new UpdateDocumentForm();
+            try
+            {
+                if (MainDataGrid.SelectedCells.Count > 0)
+                {
+                    int selectedRowIndex = MainDataGrid.SelectedCells[0].RowIndex;
+                    SelectedRow = MainDataGrid.Rows[selectedRowIndex];
+                    int Id = Convert.ToInt32(SelectedRow.Cells["DocumentID"].Value);
+                    string name = Convert.ToString(SelectedRow.Cells["Nazwa"].Value);
+                    DateTime date = Convert.ToDateTime(SelectedRow.Cells["Data"].Value);
+                    string nrKlienta = Convert.ToString(SelectedRow.Cells["NumerKlienta"].Value);
+                    string cenaNetto = Convert.ToString(SelectedRow.Cells["CenaNetto"].Value);
+                    string cenaBrutto = Convert.ToString(SelectedRow.Cells["CenaBrutto"].Value);
+                    DetailForm formDet = new DetailForm();
+                    formUpD.DeliverInfoHeaderUpD(name, date, nrKlienta);
+                    formUpD.FillUpdateProductDetailGrid(Id);
+                    formUpD.GetDocId(Id);
+                    formUpD.Show();
+                    FillGrid();
                 }
             }
             catch
@@ -105,4 +142,5 @@ namespace SimplyCRUDonDocuments
             }
         }
     }
+   
 }

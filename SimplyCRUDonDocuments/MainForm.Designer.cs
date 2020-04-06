@@ -59,13 +59,15 @@
             this.UpdateButton.TabIndex = 1;
             this.UpdateButton.Text = "Update";
             this.UpdateButton.UseVisualStyleBackColor = false;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // MainDataGrid
             // 
+            this.MainDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.MainDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MainDataGrid.Location = new System.Drawing.Point(231, 81);
             this.MainDataGrid.Name = "MainDataGrid";
-            this.MainDataGrid.Size = new System.Drawing.Size(542, 324);
+            this.MainDataGrid.Size = new System.Drawing.Size(668, 324);
             this.MainDataGrid.TabIndex = 2;
             this.MainDataGrid.Click += new System.EventHandler(this.MainDataGrid_Click);
             // 
@@ -85,7 +87,7 @@
             // 
             this.MainTitleLabel.AutoSize = true;
             this.MainTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.MainTitleLabel.Location = new System.Drawing.Point(384, 21);
+            this.MainTitleLabel.Location = new System.Drawing.Point(426, 24);
             this.MainTitleLabel.Name = "MainTitleLabel";
             this.MainTitleLabel.Size = new System.Drawing.Size(254, 31);
             this.MainTitleLabel.TabIndex = 5;
@@ -108,7 +110,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(941, 450);
             this.Controls.Add(this.MainDetailsButton);
             this.Controls.Add(this.MainTitleLabel);
             this.Controls.Add(this.MainDeleteButton);

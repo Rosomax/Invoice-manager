@@ -19,21 +19,12 @@ namespace SimplyCRUDonDocuments
             RemoveProductButton.Visible = false;
             ProductDataGrid.Visible = false;
         }
-        DocsModelContext modelAdd = new DocsModelContext();
-        DocumentPositions product = new DocumentPositions();
-        public static int IdDoc { get; private set; }
-        public DataGridViewRow SelectedRow { get; private set; }
+
         private void HeaderCancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        public void ClearFields()
-        {
-            HeaderNameTextBox.Text = "";
-            HeaderIdKlientaTextBox.Text = "";
-            HeaderNettoTextBox.Text = "";
-            HeaderBruttoTextBox.Text = "";
-        }
+
         private void ConfirmHeaderButton_Click(object sender, EventArgs e)
         {
             using (var db = new DocsModelContext())
@@ -47,8 +38,8 @@ namespace SimplyCRUDonDocuments
                     NumerKlienta = int.Parse(HeaderIdKlientaTextBox.Text),
                     CenaNetto = 0,
                     CenaBrutto = 0,
-                }); 
-                
+                });
+                int actualId = db.Headers.Max(x => x.DocumentId);
                 db.SaveChanges();
                 AddProductButton.Visible = true;
                 RemoveProductButton.Visible = true;
@@ -57,9 +48,18 @@ namespace SimplyCRUDonDocuments
                 HeaderIdKlientaTextBox.Enabled = false;
                 HeaderDateTimePicker.Enabled = false;
                 HeaderCancelButton.Text = "Zakończ dokument";
-                //ClearFields();
                 MessageBox.Show("Pomyślnie dodano dokument do bazy!", "Sukces", 0);
                 MessageBox.Show("Możesz teraz uzupełnić dokument o produkty", "Komunikat", 0);
+                ConfirmHeaderButton.Enabled = false;
+                ProductDataGrid.DataSource = db.Articles.Select(n => new
+                {
+                    n.DocumentId,
+                    n.NazwaArtykulu,
+                    n.LiczbaArtykulu,
+                    n.CenaNettoArtykulu,
+                    n.CenaBruttoArtykulu
+                })
+                .Where(n => n.DocumentId == actualId).ToList();
             }
         }
 
@@ -67,13 +67,18 @@ namespace SimplyCRUDonDocuments
         {
             AddProductForm formAddP = new AddProductForm();
             formAddP.Show();
+            int actualId;
+            using (var db = new DocsModelContext())
+            {
+                actualId = db.Headers.Max(x => x.DocumentId);
+            }
+                formAddP.FillProdcutDataGrid(ProductDataGrid, actualId);
         }
 
         private void RemoveProductButton_Click(object sender, EventArgs e)
         {
             
-       
-        
-    }
+             
+        }
     }
 }
