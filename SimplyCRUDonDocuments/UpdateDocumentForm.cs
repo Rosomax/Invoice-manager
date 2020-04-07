@@ -20,16 +20,15 @@ namespace SimplyCRUDonDocuments
         DocsModelContext modelUpD = new DocsModelContext();
         DocumentPositions article = new DocumentPositions();
         public int DocId { get; set; }
-        public void GetDocId(int id)
-        {
-            DocId = id;
-        }
+
         public DataGridViewRow SelectedRowUpD { get; private set; }
-        public void DeliverInfoHeaderUpD(string name, DateTime date, string nrKlienta)
+        public void DeliverInfoHeaderUpD(string name, DateTime date, string nrKlienta, string kwotaN, string kwotaB)
         {
             UpdateNameTextBox.Text = name;
             UpdateDatePicker.Value = date;
             UpdateIdKleintaTextBox.Text = nrKlienta;
+            SumNettoDocLabel.Text = "Razem  netto: " + kwotaN + "zł" ;
+            SumaBruttoLabel.Text = "Razem brutto: "+kwotaB+"zł";
         }
 
 
@@ -41,13 +40,17 @@ namespace SimplyCRUDonDocuments
                 o.LiczbaArtykulu,
                 o.CenaNettoArtykulu,
                 o.CenaBruttoArtykulu,
+                o.RazemNetto,
+                o.RazemBrutto,
                 o.DocumentId
             }).Where(o=>o.DocumentId==id).ToList();
             UpdateProductDateGrid.Columns["DocumentId"].Visible = false;
-            UpdateProductDateGrid.Columns[0].HeaderCell.Value = "Nazwa";
+            UpdateProductDateGrid.Columns[0].HeaderCell.Value = "Nazwa \nProduktu";
             UpdateProductDateGrid.Columns[1].HeaderCell.Value = "Liczba sztuk";
-            UpdateProductDateGrid.Columns[2].HeaderCell.Value = "Cena netto";
-            UpdateProductDateGrid.Columns[3].HeaderCell.Value = "Cena brutto";
+            UpdateProductDateGrid.Columns[2].HeaderCell.Value = "Cena netto w zł";
+            UpdateProductDateGrid.Columns[3].HeaderCell.Value = "Cena brutto w zł";
+            UpdateProductDateGrid.Columns[4].HeaderCell.Value = "Razem netto w zł";
+            UpdateProductDateGrid.Columns[5].HeaderCell.Value = "Razem Brutto w zł";
         }
 
         public void FillProductDetailToUpDate(string name,int lsztuk, double cenaN, double cenaB)
@@ -58,6 +61,31 @@ namespace SimplyCRUDonDocuments
             UpdateCenaBruttoProduktuTextBox.Text = cenaB.ToString();
         }
 
+        public void AdditionNettoAndBruttoValue()
+        {
+            DocsModelContext modelUpD = new DocsModelContext();
+            DocumentHeader header = new DocumentHeader();
+            double sumN = 0;
+            double sumB = 0;
+            for (int i = 0; i < UpdateProductDateGrid.Rows.Count; ++i)
+            {
+                sumN += Convert.ToDouble(UpdateProductDateGrid.Rows[i].Cells[4].Value);
+            }
+            SumNettoDocLabel.Text = "Razem  netto: " + sumN+"zł";
+            for (int i = 0; i < UpdateProductDateGrid.Rows.Count; ++i)
+            {
+                sumB += Convert.ToDouble(UpdateProductDateGrid.Rows[i].Cells[5].Value);
+            }
+            SumaBruttoLabel.Text = "Razem  netto: " + sumB +"zł";
+                using (modelUpD)
+                {
+                    header = modelUpD.Headers.Where(x => x.DocumentId == DocId).FirstOrDefault();
+                    header.CenaNetto = sumN;
+                    header.CenaBrutto = sumB;
+                    modelUpD.SaveChanges();
+                }
+        }
+
         public void StartStatus()
         {
             HeaderEditButton.Enabled = true;
@@ -66,6 +94,10 @@ namespace SimplyCRUDonDocuments
             EditArticlesButton.BackColor = Color.Gray;
             SaveChangesButton.Enabled = false;
             SaveChangesButton.BackColor = Color.White;
+            UpdateAddProductButton.Enabled = false;
+            UpdateAddProductButton.BackColor = Color.White;
+            UpdateRemoveProductButon.Enabled = false;
+            UpdateRemoveProductButon.BackColor = Color.White;
             UpdateNameTextBox.Enabled = false;
             CancelChangesButton.Enabled = false;
             CancelChangesButton.BackColor = Color.White;
@@ -100,6 +132,10 @@ namespace SimplyCRUDonDocuments
             SaveChangesButton.BackColor = Color.Lime;
             CancelChangesButton.Enabled = true;
             CancelChangesButton.BackColor = Color.Red;
+            UpdateAddProductButton.Enabled = true;
+            UpdateAddProductButton.BackColor = Color.Lime;
+            UpdateRemoveProductButon.Enabled = true;
+            UpdateRemoveProductButon.BackColor = Color.Red;
             UpdateProductNameTextBox.Enabled = true;
             UpdateLiczbaSztukTextBox.Enabled = true;
             UpdateCenaNettoProduktuTextBox.Enabled = true;
@@ -129,15 +165,16 @@ namespace SimplyCRUDonDocuments
                     }
                     
                     MessageBox.Show("Zmodyfikowano dane nagłówkowe");
-                    //FillHeaderAfterUpDate();
                 }
 
             }
             catch (NullReferenceException) { }
             try
             {
-                if (!HeaderEditButton.Enabled & UpdateProductDateGrid.CurrentRow.Index != -1)
+                bool checkEmpty = string.IsNullOrEmpty(UpdateLiczbaSztukTextBox.Text);
+                if (!HeaderEditButton.Enabled & UpdateProductDateGrid.CurrentRow.Index != -1 & checkEmpty==false)
                 {
+                    
                     article.NazwaArtykulu = (UpdateProductDateGrid.CurrentRow.Cells["NazwaArtykulu"].Value).ToString();
                     using (modelUpD)
                     {
@@ -146,16 +183,21 @@ namespace SimplyCRUDonDocuments
                         article.LiczbaArtykulu = Convert.ToInt32(UpdateLiczbaSztukTextBox.Text);
                         article.CenaNettoArtykulu = Convert.ToDouble(UpdateCenaNettoProduktuTextBox.Text);
                         article.CenaBruttoArtykulu = Convert.ToDouble(UpdateCenaBruttoProduktuTextBox.Text);
+                        article.RazemNetto = Convert.ToInt32(UpdateLiczbaSztukTextBox.Text) * Convert.ToDouble(UpdateCenaNettoProduktuTextBox.Text);
+                        article.RazemBrutto = Convert.ToInt32(UpdateLiczbaSztukTextBox.Text) * Convert.ToDouble(UpdateCenaBruttoProduktuTextBox.Text);
                         modelUpD.SaveChanges();
                         FillUpdateProductDetailGrid(DocId);
-
+                        AdditionNettoAndBruttoValue();
                     }
                     MessageBox.Show("Zmodyfikowano pozycje dokumentu");
 
                 }
 
             }
-            catch (NullReferenceException) { }
+            catch
+            { 
+                MessageBox.Show("Nie zaznaczono żadnego produktu"); 
+            }
             StartStatus();
         }
 
@@ -186,6 +228,19 @@ namespace SimplyCRUDonDocuments
                 }
             }
             catch (NullReferenceException) { }
+        }
+
+        private void UpdateRemoveProductButon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateAddProductButton_Click(object sender, EventArgs e)
+        {
+            //AddProductForm formAddP = new AddProductForm(this);
+
+            //formAddP.Show();
+            //FillUpdateProductDetailGrid(DocId);
         }
     }
 }

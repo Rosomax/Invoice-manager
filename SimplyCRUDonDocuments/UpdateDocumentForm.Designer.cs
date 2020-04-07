@@ -48,6 +48,10 @@
             this.UpdateCenaBruttoProduktuLabel = new System.Windows.Forms.Label();
             this.UpdateCenaNettoProduktuTextBox = new System.Windows.Forms.TextBox();
             this.UpdateCenaBruttoProduktuTextBox = new System.Windows.Forms.TextBox();
+            this.SumNettoDocLabel = new System.Windows.Forms.Label();
+            this.SumaBruttoLabel = new System.Windows.Forms.Label();
+            this.UpdateAddProductButton = new System.Windows.Forms.Button();
+            this.UpdateRemoveProductButon = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateProductDateGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +72,7 @@
             this.EditArticlesButton.BackColor = System.Drawing.Color.Gray;
             this.EditArticlesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.EditArticlesButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.EditArticlesButton.Location = new System.Drawing.Point(37, 145);
+            this.EditArticlesButton.Location = new System.Drawing.Point(37, 127);
             this.EditArticlesButton.Name = "EditArticlesButton";
             this.EditArticlesButton.Size = new System.Drawing.Size(164, 57);
             this.EditArticlesButton.TabIndex = 1;
@@ -81,7 +85,7 @@
             this.SaveChangesButton.BackColor = System.Drawing.Color.Lime;
             this.SaveChangesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SaveChangesButton.ForeColor = System.Drawing.Color.Black;
-            this.SaveChangesButton.Location = new System.Drawing.Point(37, 256);
+            this.SaveChangesButton.Location = new System.Drawing.Point(37, 303);
             this.SaveChangesButton.Name = "SaveChangesButton";
             this.SaveChangesButton.Size = new System.Drawing.Size(164, 59);
             this.SaveChangesButton.TabIndex = 2;
@@ -93,7 +97,7 @@
             // 
             this.CancelChangesButton.BackColor = System.Drawing.Color.Red;
             this.CancelChangesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.CancelChangesButton.Location = new System.Drawing.Point(37, 367);
+            this.CancelChangesButton.Location = new System.Drawing.Point(37, 382);
             this.CancelChangesButton.Name = "CancelChangesButton";
             this.CancelChangesButton.Size = new System.Drawing.Size(164, 59);
             this.CancelChangesButton.TabIndex = 3;
@@ -178,7 +182,7 @@
             // 
             this.UpdateProductNameLabel.AutoSize = true;
             this.UpdateProductNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.UpdateProductNameLabel.Location = new System.Drawing.Point(257, 417);
+            this.UpdateProductNameLabel.Location = new System.Drawing.Point(257, 400);
             this.UpdateProductNameLabel.Name = "UpdateProductNameLabel";
             this.UpdateProductNameLabel.Size = new System.Drawing.Size(118, 18);
             this.UpdateProductNameLabel.TabIndex = 12;
@@ -188,7 +192,7 @@
             // 
             this.UpdateLiczbaSztukProduktuLabel.AutoSize = true;
             this.UpdateLiczbaSztukProduktuLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.UpdateLiczbaSztukProduktuLabel.Location = new System.Drawing.Point(474, 417);
+            this.UpdateLiczbaSztukProduktuLabel.Location = new System.Drawing.Point(474, 400);
             this.UpdateLiczbaSztukProduktuLabel.Name = "UpdateLiczbaSztukProduktuLabel";
             this.UpdateLiczbaSztukProduktuLabel.Size = new System.Drawing.Size(91, 18);
             this.UpdateLiczbaSztukProduktuLabel.TabIndex = 13;
@@ -196,14 +200,14 @@
             // 
             // UpdateProductNameTextBox
             // 
-            this.UpdateProductNameTextBox.Location = new System.Drawing.Point(260, 452);
+            this.UpdateProductNameTextBox.Location = new System.Drawing.Point(260, 421);
             this.UpdateProductNameTextBox.Name = "UpdateProductNameTextBox";
             this.UpdateProductNameTextBox.Size = new System.Drawing.Size(164, 20);
             this.UpdateProductNameTextBox.TabIndex = 14;
             // 
             // UpdateLiczbaSztukTextBox
             // 
-            this.UpdateLiczbaSztukTextBox.Location = new System.Drawing.Point(477, 452);
+            this.UpdateLiczbaSztukTextBox.Location = new System.Drawing.Point(477, 421);
             this.UpdateLiczbaSztukTextBox.Name = "UpdateLiczbaSztukTextBox";
             this.UpdateLiczbaSztukTextBox.Size = new System.Drawing.Size(164, 20);
             this.UpdateLiczbaSztukTextBox.TabIndex = 15;
@@ -212,35 +216,81 @@
             // 
             this.UpdateCenaNettoProduktuLabel.AutoSize = true;
             this.UpdateCenaNettoProduktuLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.UpdateCenaNettoProduktuLabel.Location = new System.Drawing.Point(257, 494);
+            this.UpdateCenaNettoProduktuLabel.Location = new System.Drawing.Point(257, 462);
             this.UpdateCenaNettoProduktuLabel.Name = "UpdateCenaNettoProduktuLabel";
-            this.UpdateCenaNettoProduktuLabel.Size = new System.Drawing.Size(80, 18);
+            this.UpdateCenaNettoProduktuLabel.Size = new System.Drawing.Size(142, 18);
             this.UpdateCenaNettoProduktuLabel.TabIndex = 16;
-            this.UpdateCenaNettoProduktuLabel.Text = "Cena netto";
+            this.UpdateCenaNettoProduktuLabel.Text = "Cena netto produktu";
             // 
             // UpdateCenaBruttoProduktuLabel
             // 
             this.UpdateCenaBruttoProduktuLabel.AutoSize = true;
             this.UpdateCenaBruttoProduktuLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.UpdateCenaBruttoProduktuLabel.Location = new System.Drawing.Point(474, 494);
+            this.UpdateCenaBruttoProduktuLabel.Location = new System.Drawing.Point(474, 462);
             this.UpdateCenaBruttoProduktuLabel.Name = "UpdateCenaBruttoProduktuLabel";
-            this.UpdateCenaBruttoProduktuLabel.Size = new System.Drawing.Size(85, 18);
+            this.UpdateCenaBruttoProduktuLabel.Size = new System.Drawing.Size(146, 18);
             this.UpdateCenaBruttoProduktuLabel.TabIndex = 17;
-            this.UpdateCenaBruttoProduktuLabel.Text = "Cena brutto";
+            this.UpdateCenaBruttoProduktuLabel.Text = "Cena brutto pruduktu";
             // 
             // UpdateCenaNettoProduktuTextBox
             // 
-            this.UpdateCenaNettoProduktuTextBox.Location = new System.Drawing.Point(260, 532);
+            this.UpdateCenaNettoProduktuTextBox.Location = new System.Drawing.Point(260, 483);
             this.UpdateCenaNettoProduktuTextBox.Name = "UpdateCenaNettoProduktuTextBox";
             this.UpdateCenaNettoProduktuTextBox.Size = new System.Drawing.Size(164, 20);
             this.UpdateCenaNettoProduktuTextBox.TabIndex = 18;
             // 
             // UpdateCenaBruttoProduktuTextBox
             // 
-            this.UpdateCenaBruttoProduktuTextBox.Location = new System.Drawing.Point(477, 532);
+            this.UpdateCenaBruttoProduktuTextBox.Location = new System.Drawing.Point(477, 483);
             this.UpdateCenaBruttoProduktuTextBox.Name = "UpdateCenaBruttoProduktuTextBox";
             this.UpdateCenaBruttoProduktuTextBox.Size = new System.Drawing.Size(164, 20);
             this.UpdateCenaBruttoProduktuTextBox.TabIndex = 19;
+            // 
+            // SumNettoDocLabel
+            // 
+            this.SumNettoDocLabel.AutoSize = true;
+            this.SumNettoDocLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SumNettoDocLabel.Location = new System.Drawing.Point(231, 525);
+            this.SumNettoDocLabel.Name = "SumNettoDocLabel";
+            this.SumNettoDocLabel.Size = new System.Drawing.Size(132, 24);
+            this.SumNettoDocLabel.TabIndex = 20;
+            this.SumNettoDocLabel.Text = "Razem  netto";
+            // 
+            // SumaBruttoLabel
+            // 
+            this.SumaBruttoLabel.AutoSize = true;
+            this.SumaBruttoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SumaBruttoLabel.Location = new System.Drawing.Point(451, 525);
+            this.SumaBruttoLabel.Name = "SumaBruttoLabel";
+            this.SumaBruttoLabel.Size = new System.Drawing.Size(139, 24);
+            this.SumaBruttoLabel.TabIndex = 21;
+            this.SumaBruttoLabel.Text = "Razem  brutto";
+            // 
+            // UpdateAddProductButton
+            // 
+            this.UpdateAddProductButton.BackColor = System.Drawing.Color.Lime;
+            this.UpdateAddProductButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.UpdateAddProductButton.ForeColor = System.Drawing.Color.Black;
+            this.UpdateAddProductButton.Location = new System.Drawing.Point(132, 215);
+            this.UpdateAddProductButton.Name = "UpdateAddProductButton";
+            this.UpdateAddProductButton.Size = new System.Drawing.Size(69, 62);
+            this.UpdateAddProductButton.TabIndex = 22;
+            this.UpdateAddProductButton.Text = "+";
+            this.UpdateAddProductButton.UseVisualStyleBackColor = false;
+            this.UpdateAddProductButton.Click += new System.EventHandler(this.UpdateAddProductButton_Click);
+            // 
+            // UpdateRemoveProductButon
+            // 
+            this.UpdateRemoveProductButon.BackColor = System.Drawing.Color.Red;
+            this.UpdateRemoveProductButon.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.UpdateRemoveProductButon.ForeColor = System.Drawing.Color.Black;
+            this.UpdateRemoveProductButon.Location = new System.Drawing.Point(37, 215);
+            this.UpdateRemoveProductButon.Name = "UpdateRemoveProductButon";
+            this.UpdateRemoveProductButon.Size = new System.Drawing.Size(67, 62);
+            this.UpdateRemoveProductButon.TabIndex = 23;
+            this.UpdateRemoveProductButon.Text = "-";
+            this.UpdateRemoveProductButon.UseVisualStyleBackColor = false;
+            this.UpdateRemoveProductButon.Click += new System.EventHandler(this.UpdateRemoveProductButon_Click);
             // 
             // UpdateDocumentForm
             // 
@@ -248,6 +298,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(673, 564);
+            this.Controls.Add(this.UpdateRemoveProductButon);
+            this.Controls.Add(this.UpdateAddProductButton);
+            this.Controls.Add(this.SumaBruttoLabel);
+            this.Controls.Add(this.SumNettoDocLabel);
             this.Controls.Add(this.UpdateCenaBruttoProduktuTextBox);
             this.Controls.Add(this.UpdateCenaNettoProduktuTextBox);
             this.Controls.Add(this.UpdateCenaBruttoProduktuLabel);
@@ -298,5 +352,9 @@
         private System.Windows.Forms.Label UpdateCenaBruttoProduktuLabel;
         private System.Windows.Forms.TextBox UpdateCenaNettoProduktuTextBox;
         private System.Windows.Forms.TextBox UpdateCenaBruttoProduktuTextBox;
+        private System.Windows.Forms.Label SumNettoDocLabel;
+        private System.Windows.Forms.Label SumaBruttoLabel;
+        private System.Windows.Forms.Button UpdateAddProductButton;
+        private System.Windows.Forms.Button UpdateRemoveProductButon;
     }
 }

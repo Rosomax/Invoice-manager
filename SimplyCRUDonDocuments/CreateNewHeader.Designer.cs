@@ -45,6 +45,7 @@
             this.RemoveProductButton = new System.Windows.Forms.Button();
             this.ProductDataGrid = new System.Windows.Forms.DataGridView();
             this.ProductFormTimer = new System.Windows.Forms.Timer(this.components);
+            this.CreateIdDocLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -194,10 +195,21 @@
             this.ProductDataGrid.Size = new System.Drawing.Size(558, 216);
             this.ProductDataGrid.TabIndex = 15;
             this.ProductDataGrid.Visible = false;
+            this.ProductDataGrid.Click += new System.EventHandler(this.ProductDataGrid_Click);
             // 
             // ProductFormTimer
             // 
             this.ProductFormTimer.Enabled = true;
+            // 
+            // CreateIdDocLabel
+            // 
+            this.CreateIdDocLabel.AutoSize = true;
+            this.CreateIdDocLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.CreateIdDocLabel.Location = new System.Drawing.Point(25, 180);
+            this.CreateIdDocLabel.Name = "CreateIdDocLabel";
+            this.CreateIdDocLabel.Size = new System.Drawing.Size(86, 20);
+            this.CreateIdDocLabel.TabIndex = 16;
+            this.CreateIdDocLabel.Text = "Numer doc";
             // 
             // CreateNewHeader
             // 
@@ -205,6 +217,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(626, 590);
+            this.Controls.Add(this.CreateIdDocLabel);
             this.Controls.Add(this.ProductDataGrid);
             this.Controls.Add(this.RemoveProductButton);
             this.Controls.Add(this.AddProductButton);
@@ -246,5 +259,6 @@
         private System.Windows.Forms.Button RemoveProductButton;
         private System.Windows.Forms.DataGridView ProductDataGrid;
         private System.Windows.Forms.Timer ProductFormTimer;
+        private System.Windows.Forms.Label CreateIdDocLabel;
     }
 }

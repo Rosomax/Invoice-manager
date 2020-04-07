@@ -24,12 +24,13 @@ namespace SimplyCRUDonDocuments
         public void DeliverInfo(int Id, string name,string  date,string nrKlienta,
             string cenaNetto,string  cenaBrutto)
         {
+
             IddocLabelToFill.Text = "Numer dokumentu: " + Id.ToString();
             DatailNameLabelToFill.Text = name;
             DetailDateLabelToFill.Text = "Data wystawienia: \n"+date;
             DetailIDKlientaToFill.Text = "Numer klienta: "+ nrKlienta;
-            DetailNettoToFill.Text = cenaNetto;
-            DetailBruttoToFill.Text = cenaBrutto;
+            DetailNettoLabel.Text = "Kwota faktury netto: "+cenaNetto+"zł";
+            DetailBruttoLabel.Text = "Kwota faktury brutto: " + cenaBrutto + "zł";
         }
 
         
@@ -43,13 +44,17 @@ namespace SimplyCRUDonDocuments
                 o.LiczbaArtykulu,
                 o.CenaNettoArtykulu,
                 o.CenaBruttoArtykulu,
+                o.RazemNetto,
+                o.RazemBrutto,
                 o.DocumentId
             }).Where(o => o.DocumentId == id).ToList();
             DetailDataGrid.Columns["DocumentId"].Visible = false;
-            DetailDataGrid.Columns[0].HeaderCell.Value = "Nazwa";
+            DetailDataGrid.Columns[0].HeaderCell.Value = "Nazwa \nProduktu";
             DetailDataGrid.Columns[1].HeaderCell.Value = "Liczba sztuk";
-            DetailDataGrid.Columns[2].HeaderCell.Value = "Cena netto";
-            DetailDataGrid.Columns[3].HeaderCell.Value = "Cena brutto";
+            DetailDataGrid.Columns[2].HeaderCell.Value = "Cena netto w zł";
+            DetailDataGrid.Columns[3].HeaderCell.Value = "Cena brutto w zł";
+            DetailDataGrid.Columns[4].HeaderCell.Value = "Razem netto w zł";
+            DetailDataGrid.Columns[5].HeaderCell.Value = "Razem Brutto w zł";
         }
 
         private void ReturnButton_Click(object sender, EventArgs e)

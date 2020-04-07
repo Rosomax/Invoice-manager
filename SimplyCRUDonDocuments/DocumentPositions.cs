@@ -17,6 +17,8 @@ namespace SimplyCRUDonDocuments
         public double CenaNettoArtykulu { get; set; }
         public double CenaBruttoArtykulu { get; set; }
         public int LiczbaArtykulu { get; set; }
+        public double RazemNetto { get; set; }
+        public double RazemBrutto { get; set; }
         [ForeignKey("DocumentHeader")]
         public int DocumentId { get; set; }
         public virtual DocumentHeader DocumentHeader { get; set; }

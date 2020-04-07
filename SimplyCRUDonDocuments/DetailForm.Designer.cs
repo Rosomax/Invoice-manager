@@ -36,8 +36,6 @@
             this.DetailDataGrid = new System.Windows.Forms.DataGridView();
             this.DetailNettoLabel = new System.Windows.Forms.Label();
             this.DetailBruttoLabel = new System.Windows.Forms.Label();
-            this.DetailBruttoToFill = new System.Windows.Forms.Label();
-            this.DetailNettoToFill = new System.Windows.Forms.Label();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.Menu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -110,26 +108,6 @@
             this.DetailBruttoLabel.TabIndex = 7;
             this.DetailBruttoLabel.Text = "Kwota Brutto:";
             // 
-            // DetailBruttoToFill
-            // 
-            this.DetailBruttoToFill.AutoSize = true;
-            this.DetailBruttoToFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DetailBruttoToFill.Location = new System.Drawing.Point(199, 544);
-            this.DetailBruttoToFill.Name = "DetailBruttoToFill";
-            this.DetailBruttoToFill.Size = new System.Drawing.Size(118, 20);
-            this.DetailBruttoToFill.TabIndex = 8;
-            this.DetailBruttoToFill.Text = "Kwota Brutto:";
-            // 
-            // DetailNettoToFill
-            // 
-            this.DetailNettoToFill.AutoSize = true;
-            this.DetailNettoToFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DetailNettoToFill.Location = new System.Drawing.Point(199, 495);
-            this.DetailNettoToFill.Name = "DetailNettoToFill";
-            this.DetailNettoToFill.Size = new System.Drawing.Size(112, 20);
-            this.DetailNettoToFill.TabIndex = 9;
-            this.DetailNettoToFill.Text = "Kwota Netto:";
-            // 
             // printDialog1
             // 
             this.printDialog1.UseEXDialog = true;
@@ -200,8 +178,6 @@
             this.Controls.Add(this.ReturnButton);
             this.Controls.Add(this.PrintButton);
             this.Controls.Add(this.IddocLabelToFill);
-            this.Controls.Add(this.DetailNettoToFill);
-            this.Controls.Add(this.DetailBruttoToFill);
             this.Controls.Add(this.DetailBruttoLabel);
             this.Controls.Add(this.DetailNettoLabel);
             this.Controls.Add(this.DetailDataGrid);
@@ -225,8 +201,6 @@
         private System.Windows.Forms.DataGridView DetailDataGrid;
         private System.Windows.Forms.Label DetailNettoLabel;
         private System.Windows.Forms.Label DetailBruttoLabel;
-        private System.Windows.Forms.Label DetailBruttoToFill;
-        private System.Windows.Forms.Label DetailNettoToFill;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.ContextMenuStrip Menu;

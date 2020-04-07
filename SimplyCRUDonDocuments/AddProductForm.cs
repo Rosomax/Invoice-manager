@@ -12,12 +12,24 @@ namespace SimplyCRUDonDocuments
 {
     public partial class AddProductForm : Form
     {
+        private CreateNewHeader headerForm;
+        private UpdateDocumentForm updateForm;
         public AddProductForm()
         {
             InitializeComponent();
         }
         DocsModelContext model = new DocsModelContext();
         int maxValue;
+        public AddProductForm(CreateNewHeader form)
+        {
+            InitializeComponent();
+            headerForm = form;
+        }
+        public AddProductForm(UpdateDocumentForm formU)
+        {
+            InitializeComponent();
+            updateForm = formU;
+        }
 
         public void ClearProductFields()
         {
@@ -26,21 +38,6 @@ namespace SimplyCRUDonDocuments
             NettoPriceTextBox.Text = "";
             BruttoPriceTextBox.Text = "";
         }
-
-        public void FillProdcutDataGrid(DataGridView data, int actualId)
-        {
-            data.DataSource=model.Articles.Select(n => new
-            {
-                n.DocumentId,
-                n.NazwaArtykulu,
-                n.LiczbaArtykulu,
-                n.CenaNettoArtykulu,
-                n.CenaBruttoArtykulu
-            })
-                .Where(n => n.DocumentId == actualId).ToList();
-        }
-        public void RemoveRecord()
-        { }
 
         private void AcceptProductButton_Click(object sender, EventArgs e)
         {
@@ -54,10 +51,13 @@ namespace SimplyCRUDonDocuments
                     LiczbaArtykulu = int.Parse(NumberProductTextBox.Text),
                     CenaNettoArtykulu = double.Parse(NettoPriceTextBox.Text),
                     CenaBruttoArtykulu = double.Parse(BruttoPriceTextBox.Text),
+                    RazemNetto= int.Parse(NumberProductTextBox.Text)* double.Parse(NettoPriceTextBox.Text),
+                    RazemBrutto = int.Parse(BruttoPriceTextBox.Text) * double.Parse(NettoPriceTextBox.Text),
                     DocumentId = maxValue
-                });
+                });;
                     dbProd.SaveChanges();
                     ClearProductFields();
+                    headerForm.fillDGP(maxValue);
                     MessageBox.Show("Pomyślnie dodano produkt", "Sukces", 0);
                     DialogResult dialogResult = MessageBox.Show("Czy kontynuować dodawanie produktów?", "Komunikat", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)

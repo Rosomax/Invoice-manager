@@ -74,14 +74,14 @@ namespace SimplyCRUDonDocuments
             MainDataGrid.Columns[1].HeaderCell.Value = "Tytuł faktury";
             MainDataGrid.Columns[2].HeaderCell.Value = "Numer klienta";
             MainDataGrid.Columns[3].HeaderCell.Value = "Data wystawienia";
-            MainDataGrid.Columns[4].HeaderCell.Value = "Kwota netto";
-            MainDataGrid.Columns[5].HeaderCell.Value = "Kwota brutto";
+            MainDataGrid.Columns[4].HeaderCell.Value = "Kwota faktury \nnetto w zł";
+            MainDataGrid.Columns[5].HeaderCell.Value = "Kwota faktury \nbrutto w zł";
         }
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            CreateNewHeader form = new CreateNewHeader();
-            form.Show();
+            CreateNewHeader formHeader = new CreateNewHeader();
+            formHeader.Show();
             
         }
         
@@ -128,10 +128,9 @@ namespace SimplyCRUDonDocuments
                     string nrKlienta = Convert.ToString(SelectedRow.Cells["NumerKlienta"].Value);
                     string cenaNetto = Convert.ToString(SelectedRow.Cells["CenaNetto"].Value);
                     string cenaBrutto = Convert.ToString(SelectedRow.Cells["CenaBrutto"].Value);
-                    DetailForm formDet = new DetailForm();
-                    formUpD.DeliverInfoHeaderUpD(name, date, nrKlienta);
+                    formUpD.DeliverInfoHeaderUpD(name, date, nrKlienta,cenaNetto,cenaBrutto);
                     formUpD.FillUpdateProductDetailGrid(Id);
-                    formUpD.GetDocId(Id);
+                    formUpD.DocId = Id;
                     formUpD.Show();
                     FillGrid();
                 }

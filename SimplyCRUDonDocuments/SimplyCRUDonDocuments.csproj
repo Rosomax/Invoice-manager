@@ -91,6 +91,10 @@
     <Compile Include="Migrations\202004040426066_Migration3.Designer.cs">
       <DependentUpon>202004040426066_Migration3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004070716199_MigrationAddColumsRazem.cs" />
+    <Compile Include="Migrations\202004070716199_MigrationAddColumsRazem.Designer.cs">
+      <DependentUpon>202004070716199_MigrationAddColumsRazem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004040426066_Migration3.resx">
       <DependentUpon>202004040426066_Migration3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004070716199_MigrationAddColumsRazem.resx">
+      <DependentUpon>202004070716199_MigrationAddColumsRazem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
