@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Octokit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,9 +20,21 @@ namespace SimplyCRUDonDocuments
         private void MainForm_Load(object sender, EventArgs e)
         {
             FillGrid();
+            GetGitInfo();
         }
         DocsModelContext model = new DocsModelContext();
         DocumentHeader header = new DocumentHeader();
+        public async void GetGitInfo()
+        {
+            var client = new GitHubClient(new ProductHeaderValue("Invoice-Manager"));
+            var user = await client.User.Get("Rosomax");
+            var repoData = await client.Repository.Get("Rosomax", "Invoice-manager");
+            string data = "Autor: "+user.Name+"\nLogin na github: "+repoData.Owner.Login+"\nRepozytorium utworzono: "+repoData.CreatedAt
+                +"\nLiczba gwiazdek(ocena) repozytorium: "+repoData.StargazersCount;
+            TestLabel.Text = data;
+
+        }
+        
         public DataGridViewRow SelectedRow { get; private set; }
         public static int Id { get; private set; }
         public void FillGrid()
