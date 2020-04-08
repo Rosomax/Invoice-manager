@@ -14,12 +14,14 @@ namespace SimplyCRUDonDocuments
     {
         private CreateNewHeader headerForm;
         private UpdateDocumentForm updateForm;
+        public int GetContext { get; set; }
+        public int GetUpdateDocId { get; set; }
+        int maxValue;
         public AddProductForm()
         {
             InitializeComponent();
         }
-        DocsModelContext model = new DocsModelContext();
-        int maxValue;
+        
         public AddProductForm(CreateNewHeader form)
         {
             InitializeComponent();
@@ -41,23 +43,47 @@ namespace SimplyCRUDonDocuments
 
         private void AcceptProductButton_Click(object sender, EventArgs e)
         {
-
-                using (var dbProd = new DocsModelContext())
+            string nettoFix = NettoPriceTextBox.Text.Replace('.', ',');
+            string bruttoFix = BruttoPriceTextBox.Text.Replace('.', ',');
+            using (var dbProd = new DocsModelContext())
                 {
-                maxValue = dbProd.Headers.Max(x => x.DocumentId);
-                dbProd.Articles.Add(new DocumentPositions
+                if (GetContext==1)
                 {
-                    NazwaArtykulu = NameProductTextBox.Text,
-                    LiczbaArtykulu = int.Parse(NumberProductTextBox.Text),
-                    CenaNettoArtykulu = double.Parse(NettoPriceTextBox.Text),
-                    CenaBruttoArtykulu = double.Parse(BruttoPriceTextBox.Text),
-                    RazemNetto= int.Parse(NumberProductTextBox.Text)* double.Parse(NettoPriceTextBox.Text),
-                    RazemBrutto = int.Parse(BruttoPriceTextBox.Text) * double.Parse(NettoPriceTextBox.Text),
-                    DocumentId = maxValue
-                });;
+                    
+                    maxValue = dbProd.Headers.Max(x => x.DocumentId);
+                    dbProd.Articles.Add(new DocumentPositions
+                    {
+                        NazwaArtykulu = NameProductTextBox.Text,
+                        LiczbaArtykulu = int.Parse(NumberProductTextBox.Text),
+                        CenaNettoArtykulu = double.Parse(nettoFix),
+                        CenaBruttoArtykulu = double.Parse(bruttoFix),
+                        RazemNetto = Math.Round((int.Parse(NumberProductTextBox.Text) * double.Parse(nettoFix)), 2, 0),
+                        RazemBrutto = Math.Round((int.Parse(NumberProductTextBox.Text) * double.Parse(bruttoFix)), 2, 0),
+                        DocumentId = maxValue
+                    }); ;
                     dbProd.SaveChanges();
                     ClearProductFields();
                     headerForm.fillDGP(maxValue);
+                    headerForm.AdditionNettoAndBruttoValue();
+                }
+                else
+                {
+                    dbProd.Articles.Add(new DocumentPositions
+                    {
+                        NazwaArtykulu = NameProductTextBox.Text,
+                        LiczbaArtykulu = int.Parse(NumberProductTextBox.Text),
+                        CenaNettoArtykulu = double.Parse(nettoFix),
+                        CenaBruttoArtykulu = double.Parse(bruttoFix),
+                        RazemNetto = Math.Round((int.Parse(NumberProductTextBox.Text) * double.Parse(nettoFix)), 2, 0),
+                        RazemBrutto = Math.Round((int.Parse(NumberProductTextBox.Text) * double.Parse(bruttoFix)),2,0),
+                        DocumentId = GetUpdateDocId
+                    }); ;
+                    dbProd.SaveChanges();
+                    ClearProductFields();
+                    updateForm.FillUpdateProductDetailGrid(GetUpdateDocId);
+                    updateForm.AdditionNettoAndBruttoValue();
+                }
+                    
                     MessageBox.Show("Pomyślnie dodano produkt", "Sukces", 0);
                     DialogResult dialogResult = MessageBox.Show("Czy kontynuować dodawanie produktów?", "Komunikat", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)

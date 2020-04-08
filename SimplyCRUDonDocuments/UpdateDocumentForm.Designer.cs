@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.HeaderEditButton = new System.Windows.Forms.Button();
             this.EditArticlesButton = new System.Windows.Forms.Button();
             this.SaveChangesButton = new System.Windows.Forms.Button();
@@ -126,7 +128,7 @@
             // 
             // UpdateIdKleintaTextBox
             // 
-            this.UpdateIdKleintaTextBox.Location = new System.Drawing.Point(477, 40);
+            this.UpdateIdKleintaTextBox.Location = new System.Drawing.Point(560, 40);
             this.UpdateIdKleintaTextBox.Name = "UpdateIdKleintaTextBox";
             this.UpdateIdKleintaTextBox.Size = new System.Drawing.Size(164, 20);
             this.UpdateIdKleintaTextBox.TabIndex = 6;
@@ -145,7 +147,7 @@
             // 
             this.UpdateIdKlientaLabel.AutoSize = true;
             this.UpdateIdKlientaLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.UpdateIdKlientaLabel.Location = new System.Drawing.Point(474, 18);
+            this.UpdateIdKlientaLabel.Location = new System.Drawing.Point(557, 19);
             this.UpdateIdKlientaLabel.Name = "UpdateIdKlientaLabel";
             this.UpdateIdKlientaLabel.Size = new System.Drawing.Size(65, 18);
             this.UpdateIdKlientaLabel.TabIndex = 8;
@@ -153,7 +155,7 @@
             // 
             // UpdateDatePicker
             // 
-            this.UpdateDatePicker.Location = new System.Drawing.Point(251, 94);
+            this.UpdateDatePicker.Location = new System.Drawing.Point(251, 102);
             this.UpdateDatePicker.Name = "UpdateDatePicker";
             this.UpdateDatePicker.Size = new System.Drawing.Size(208, 20);
             this.UpdateDatePicker.TabIndex = 9;
@@ -162,7 +164,7 @@
             // 
             this.UpdateDateLabel.AutoSize = true;
             this.UpdateDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.UpdateDateLabel.Location = new System.Drawing.Point(248, 73);
+            this.UpdateDateLabel.Location = new System.Drawing.Point(248, 81);
             this.UpdateDateLabel.Name = "UpdateDateLabel";
             this.UpdateDateLabel.Size = new System.Drawing.Size(200, 18);
             this.UpdateDateLabel.TabIndex = 10;
@@ -171,10 +173,30 @@
             // UpdateProductDateGrid
             // 
             this.UpdateProductDateGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.UpdateProductDateGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.UpdateProductDateGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.UpdateProductDateGrid.EnableHeadersVisualStyles = false;
             this.UpdateProductDateGrid.Location = new System.Drawing.Point(251, 145);
+            this.UpdateProductDateGrid.MultiSelect = false;
             this.UpdateProductDateGrid.Name = "UpdateProductDateGrid";
-            this.UpdateProductDateGrid.Size = new System.Drawing.Size(390, 234);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.UpdateProductDateGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.UpdateProductDateGrid.RowHeadersVisible = false;
+            this.UpdateProductDateGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.UpdateProductDateGrid.Size = new System.Drawing.Size(473, 234);
             this.UpdateProductDateGrid.TabIndex = 11;
             this.UpdateProductDateGrid.Click += new System.EventHandler(this.UpdateProductDateGrid_Click);
             // 
@@ -192,7 +214,7 @@
             // 
             this.UpdateLiczbaSztukProduktuLabel.AutoSize = true;
             this.UpdateLiczbaSztukProduktuLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.UpdateLiczbaSztukProduktuLabel.Location = new System.Drawing.Point(474, 400);
+            this.UpdateLiczbaSztukProduktuLabel.Location = new System.Drawing.Point(557, 400);
             this.UpdateLiczbaSztukProduktuLabel.Name = "UpdateLiczbaSztukProduktuLabel";
             this.UpdateLiczbaSztukProduktuLabel.Size = new System.Drawing.Size(91, 18);
             this.UpdateLiczbaSztukProduktuLabel.TabIndex = 13;
@@ -207,7 +229,7 @@
             // 
             // UpdateLiczbaSztukTextBox
             // 
-            this.UpdateLiczbaSztukTextBox.Location = new System.Drawing.Point(477, 421);
+            this.UpdateLiczbaSztukTextBox.Location = new System.Drawing.Point(560, 421);
             this.UpdateLiczbaSztukTextBox.Name = "UpdateLiczbaSztukTextBox";
             this.UpdateLiczbaSztukTextBox.Size = new System.Drawing.Size(164, 20);
             this.UpdateLiczbaSztukTextBox.TabIndex = 15;
@@ -226,7 +248,7 @@
             // 
             this.UpdateCenaBruttoProduktuLabel.AutoSize = true;
             this.UpdateCenaBruttoProduktuLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.UpdateCenaBruttoProduktuLabel.Location = new System.Drawing.Point(474, 462);
+            this.UpdateCenaBruttoProduktuLabel.Location = new System.Drawing.Point(557, 462);
             this.UpdateCenaBruttoProduktuLabel.Name = "UpdateCenaBruttoProduktuLabel";
             this.UpdateCenaBruttoProduktuLabel.Size = new System.Drawing.Size(146, 18);
             this.UpdateCenaBruttoProduktuLabel.TabIndex = 17;
@@ -241,7 +263,7 @@
             // 
             // UpdateCenaBruttoProduktuTextBox
             // 
-            this.UpdateCenaBruttoProduktuTextBox.Location = new System.Drawing.Point(477, 483);
+            this.UpdateCenaBruttoProduktuTextBox.Location = new System.Drawing.Point(560, 483);
             this.UpdateCenaBruttoProduktuTextBox.Name = "UpdateCenaBruttoProduktuTextBox";
             this.UpdateCenaBruttoProduktuTextBox.Size = new System.Drawing.Size(164, 20);
             this.UpdateCenaBruttoProduktuTextBox.TabIndex = 19;
@@ -250,7 +272,7 @@
             // 
             this.SumNettoDocLabel.AutoSize = true;
             this.SumNettoDocLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SumNettoDocLabel.Location = new System.Drawing.Point(231, 525);
+            this.SumNettoDocLabel.Location = new System.Drawing.Point(256, 525);
             this.SumNettoDocLabel.Name = "SumNettoDocLabel";
             this.SumNettoDocLabel.Size = new System.Drawing.Size(132, 24);
             this.SumNettoDocLabel.TabIndex = 20;
@@ -260,7 +282,7 @@
             // 
             this.SumaBruttoLabel.AutoSize = true;
             this.SumaBruttoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SumaBruttoLabel.Location = new System.Drawing.Point(451, 525);
+            this.SumaBruttoLabel.Location = new System.Drawing.Point(556, 525);
             this.SumaBruttoLabel.Name = "SumaBruttoLabel";
             this.SumaBruttoLabel.Size = new System.Drawing.Size(139, 24);
             this.SumaBruttoLabel.TabIndex = 21;
@@ -297,7 +319,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(673, 564);
+            this.ClientSize = new System.Drawing.Size(770, 564);
             this.Controls.Add(this.UpdateRemoveProductButon);
             this.Controls.Add(this.UpdateAddProductButton);
             this.Controls.Add(this.SumaBruttoLabel);
@@ -322,8 +344,10 @@
             this.Controls.Add(this.SaveChangesButton);
             this.Controls.Add(this.EditArticlesButton);
             this.Controls.Add(this.HeaderEditButton);
+            this.MaximizeBox = false;
             this.Name = "UpdateDocumentForm";
             this.Text = "UpdateDocumentForm";
+            this.Load += new System.EventHandler(this.UpdateDocumentForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.UpdateProductDateGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -15,13 +15,33 @@ namespace SimplyCRUDonDocuments
         public MainForm()
         {
             InitializeComponent();
+        }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
             FillGrid();
-           
         }
         DocsModelContext model = new DocsModelContext();
         DocumentHeader header = new DocumentHeader();
         public DataGridViewRow SelectedRow { get; private set; }
         public static int Id { get; private set; }
+        public void FillGrid()
+        {
+            MainDataGrid.DataSource = model.Headers.Select(o => new
+            {
+                o.DocumentId,
+                o.Nazwa,
+                o.NumerKlienta,
+                o.Data,
+                o.CenaNetto,
+                o.CenaBrutto
+            }).ToList();
+            MainDataGrid.Columns["DocumentId"].Visible = false;
+            MainDataGrid.Columns[1].HeaderCell.Value = "Tytuł faktury";
+            MainDataGrid.Columns[2].HeaderCell.Value = "Numer klienta";
+            MainDataGrid.Columns[3].HeaderCell.Value = "Data wystawienia";
+            MainDataGrid.Columns[4].HeaderCell.Value = "Kwota faktury \nnetto w zł";
+            MainDataGrid.Columns[5].HeaderCell.Value = "Kwota faktury \nbrutto w zł";
+        }
         private void MainDataGrid_Click(object sender, EventArgs e)
         {
             try
@@ -59,35 +79,18 @@ namespace SimplyCRUDonDocuments
                     MessageBox.Show("Nie zaznaczono żadnego dokumentu", "Błąd", 0);
                 }
         }
-        public void FillGrid()
-        {
-            MainDataGrid.DataSource = model.Headers.Select(o => new
-            {
-              o.DocumentId,
-              o.Nazwa,
-              o.NumerKlienta,
-              o.Data,
-              o.CenaNetto,
-              o.CenaBrutto
-            }).ToList();
-            MainDataGrid.Columns["DocumentId"].Visible = false;
-            MainDataGrid.Columns[1].HeaderCell.Value = "Tytuł faktury";
-            MainDataGrid.Columns[2].HeaderCell.Value = "Numer klienta";
-            MainDataGrid.Columns[3].HeaderCell.Value = "Data wystawienia";
-            MainDataGrid.Columns[4].HeaderCell.Value = "Kwota faktury \nnetto w zł";
-            MainDataGrid.Columns[5].HeaderCell.Value = "Kwota faktury \nbrutto w zł";
-        }
+        
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            CreateNewHeader formHeader = new CreateNewHeader();
+            CreateNewHeader formHeader = new CreateNewHeader(this);
             formHeader.Show();
             
         }
         
         private void MainDetailsButton_Click(object sender, EventArgs e)
         {
-            DetailForm form = new DetailForm();
+            DetailForm formDet = new DetailForm();
             try
             {
                 if (MainDataGrid.SelectedCells.Count > 0)
@@ -100,7 +103,6 @@ namespace SimplyCRUDonDocuments
                     string nrKlienta = Convert.ToString(SelectedRow.Cells["NumerKlienta"].Value);
                     string cenaNetto = Convert.ToString(SelectedRow.Cells["CenaNetto"].Value);
                     string cenaBrutto = Convert.ToString(SelectedRow.Cells["CenaBrutto"].Value);
-                    DetailForm formDet = new DetailForm();
                     formDet.DeliverInfo(Id, name, date, nrKlienta, cenaNetto, cenaBrutto);
                     formDet.FillProductDetailGrid(Id);
                     formDet.Show();
@@ -115,7 +117,7 @@ namespace SimplyCRUDonDocuments
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            UpdateDocumentForm formUpD = new UpdateDocumentForm();
+            UpdateDocumentForm formUpD = new UpdateDocumentForm(this);
             try
             {
                 if (MainDataGrid.SelectedCells.Count > 0)
@@ -140,6 +142,8 @@ namespace SimplyCRUDonDocuments
                 MessageBox.Show("Nie zaznaczono żadnego dokumentu", "Błąd", 0);
             }
         }
+
+        
     }
    
 }

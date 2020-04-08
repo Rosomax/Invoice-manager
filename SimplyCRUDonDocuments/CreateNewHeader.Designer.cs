@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.HeaderNameTextBox = new System.Windows.Forms.TextBox();
-            this.HeaderBruttoTextBox = new System.Windows.Forms.TextBox();
-            this.HeaderNettoTextBox = new System.Windows.Forms.TextBox();
             this.HeaderNameLabel = new System.Windows.Forms.Label();
             this.DateHeaderLabel = new System.Windows.Forms.Label();
             this.HeaderNettoLabel = new System.Windows.Forms.Label();
@@ -56,22 +55,6 @@
             this.HeaderNameTextBox.Size = new System.Drawing.Size(249, 20);
             this.HeaderNameTextBox.TabIndex = 0;
             // 
-            // HeaderBruttoTextBox
-            // 
-            this.HeaderBruttoTextBox.Enabled = false;
-            this.HeaderBruttoTextBox.Location = new System.Drawing.Point(477, 548);
-            this.HeaderBruttoTextBox.Name = "HeaderBruttoTextBox";
-            this.HeaderBruttoTextBox.Size = new System.Drawing.Size(110, 20);
-            this.HeaderBruttoTextBox.TabIndex = 2;
-            // 
-            // HeaderNettoTextBox
-            // 
-            this.HeaderNettoTextBox.Enabled = false;
-            this.HeaderNettoTextBox.Location = new System.Drawing.Point(477, 501);
-            this.HeaderNettoTextBox.Name = "HeaderNettoTextBox";
-            this.HeaderNettoTextBox.Size = new System.Drawing.Size(110, 20);
-            this.HeaderNettoTextBox.TabIndex = 3;
-            // 
             // HeaderNameLabel
             // 
             this.HeaderNameLabel.AutoSize = true;
@@ -95,22 +78,22 @@
             // HeaderNettoLabel
             // 
             this.HeaderNettoLabel.AutoSize = true;
-            this.HeaderNettoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.HeaderNettoLabel.Location = new System.Drawing.Point(369, 501);
+            this.HeaderNettoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.HeaderNettoLabel.Location = new System.Drawing.Point(376, 511);
             this.HeaderNettoLabel.Name = "HeaderNettoLabel";
-            this.HeaderNettoLabel.Size = new System.Drawing.Size(88, 20);
+            this.HeaderNettoLabel.Size = new System.Drawing.Size(171, 16);
             this.HeaderNettoLabel.TabIndex = 6;
-            this.HeaderNettoLabel.Text = "Cena netto";
+            this.HeaderNettoLabel.Text = "Kwota faktury netto: 0 zł";
             // 
             // HeaderBrutttoLabel
             // 
             this.HeaderBrutttoLabel.AutoSize = true;
-            this.HeaderBrutttoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.HeaderBrutttoLabel.Location = new System.Drawing.Point(362, 546);
+            this.HeaderBrutttoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.HeaderBrutttoLabel.Location = new System.Drawing.Point(376, 562);
             this.HeaderBrutttoLabel.Name = "HeaderBrutttoLabel";
-            this.HeaderBrutttoLabel.Size = new System.Drawing.Size(95, 20);
+            this.HeaderBrutttoLabel.Size = new System.Drawing.Size(176, 16);
             this.HeaderBrutttoLabel.TabIndex = 7;
-            this.HeaderBrutttoLabel.Text = "Cena Brutto";
+            this.HeaderBrutttoLabel.Text = "Kwota faktury brutto: 0 zł";
             // 
             // HeaderDateTimePicker
             // 
@@ -189,9 +172,21 @@
             // 
             // ProductDataGrid
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ProductDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductDataGrid.EnableHeadersVisualStyles = false;
             this.ProductDataGrid.Location = new System.Drawing.Point(29, 237);
+            this.ProductDataGrid.MultiSelect = false;
             this.ProductDataGrid.Name = "ProductDataGrid";
+            this.ProductDataGrid.RowHeadersVisible = false;
+            this.ProductDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ProductDataGrid.Size = new System.Drawing.Size(558, 216);
             this.ProductDataGrid.TabIndex = 15;
             this.ProductDataGrid.Visible = false;
@@ -230,9 +225,8 @@
             this.Controls.Add(this.HeaderNettoLabel);
             this.Controls.Add(this.DateHeaderLabel);
             this.Controls.Add(this.HeaderNameLabel);
-            this.Controls.Add(this.HeaderNettoTextBox);
-            this.Controls.Add(this.HeaderBruttoTextBox);
             this.Controls.Add(this.HeaderNameTextBox);
+            this.MaximizeBox = false;
             this.Name = "CreateNewHeader";
             this.Text = "CreateNewHeader";
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGrid)).EndInit();
@@ -244,8 +238,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox HeaderNameTextBox;
-        private System.Windows.Forms.TextBox HeaderBruttoTextBox;
-        private System.Windows.Forms.TextBox HeaderNettoTextBox;
         private System.Windows.Forms.Label HeaderNameLabel;
         private System.Windows.Forms.Label DateHeaderLabel;
         private System.Windows.Forms.Label HeaderNettoLabel;

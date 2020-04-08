@@ -22,9 +22,16 @@ namespace SimplyCRUDonDocuments
         }
         DocsModelContext model = new DocsModelContext();
         DocumentPositions article = new DocumentPositions();
+        private MainForm mainForm;
         public int docID { get; set; }
+        public CreateNewHeader(MainForm form)
+        {
+            InitializeComponent();
+            mainForm = form;
+        }
         private void HeaderCancelButton_Click(object sender, EventArgs e)
         {
+            mainForm.FillGrid();
             this.Close();
         }
         public void fillDGP(int actualId)
@@ -48,6 +55,30 @@ namespace SimplyCRUDonDocuments
             ProductDataGrid.Columns[5].HeaderCell.Value = "Razem netto w zł";
             ProductDataGrid.Columns[6].HeaderCell.Value = "Razem Brutto w zł";
         }
+        public void AdditionNettoAndBruttoValue()
+        {
+            DocsModelContext modelUpD = new DocsModelContext();
+            DocumentHeader header = new DocumentHeader();
+            double sumN = 0;
+            double sumB = 0;
+            for (int i = 0; i < ProductDataGrid.Rows.Count; ++i)
+            {
+                sumN += Convert.ToDouble(ProductDataGrid.Rows[i].Cells[5].Value);
+            }
+            HeaderNettoLabel.Text = "Razem  netto: " + sumN + "zł";
+            for (int i = 0; i < ProductDataGrid.Rows.Count; ++i)
+            {
+                sumB += Convert.ToDouble(ProductDataGrid.Rows[i].Cells[6].Value);
+            }
+            HeaderBrutttoLabel.Text = "Razem  netto: " + sumB + "zł";
+            using (modelUpD)
+            {
+                header = modelUpD.Headers.Where(x => x.DocumentId == docID).FirstOrDefault();
+                header.CenaNetto = sumN;
+                header.CenaBrutto = sumB;
+                modelUpD.SaveChanges();
+            }
+        }
         private void ConfirmHeaderButton_Click(object sender, EventArgs e)
         {
             using (var db = new DocsModelContext())
@@ -63,9 +94,9 @@ namespace SimplyCRUDonDocuments
                     CenaBrutto = 0,
                 });
                 db.SaveChanges();
-                int actualId = db.Headers.Max(x => x.DocumentId);
+                docID= db.Headers.Max(x => x.DocumentId);
                 CreateIdDocLabel.Visible = true;
-                CreateIdDocLabel.Text ="Numer faktury: "+ actualId.ToString();
+                CreateIdDocLabel.Text ="Numer faktury: "+ docID.ToString();
                 AddProductButton.Visible = true;
                 RemoveProductButton.Visible = true;
                 ProductDataGrid.Visible = true;
@@ -83,7 +114,7 @@ namespace SimplyCRUDonDocuments
         private void AddProductButton_Click(object sender, EventArgs e)
         {
             AddProductForm formAddP = new AddProductForm(this);
-
+            formAddP.GetContext = 1;
             formAddP.Show();
             fillDGP(docID);
         }

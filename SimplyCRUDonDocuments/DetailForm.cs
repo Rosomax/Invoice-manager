@@ -21,6 +21,7 @@ namespace SimplyCRUDonDocuments
             
         }
         DocsModelContext model = new DocsModelContext();
+        Bitmap graphicDocToPrint;
         public void DeliverInfo(int Id, string name,string  date,string nrKlienta,
             string cenaNetto,string  cenaBrutto)
         {
@@ -64,34 +65,22 @@ namespace SimplyCRUDonDocuments
 
         private void PrintButton_Click(object sender, EventArgs e)
         {
-            printDialog1.AllowSomePages = true;
+            ReturnButton.Visible = false;
+            PrintButton.Visible = false;
+            Graphics g = this.CreateGraphics();
+            graphicDocToPrint =new Bitmap(this.Size.Width, this.Size.Height, g);
+            Graphics mg = Graphics.FromImage(graphicDocToPrint);
+            mg.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, this.Size);
+            printPreviewDialog1.ShowDialog();
+            ReturnButton.Visible = true;
+            PrintButton.Visible = true;
 
-            printDialog1.ShowHelp = true;
 
-            printDialog1.Document = docToPrint;
 
-            DialogResult result = printDialog1.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                docToPrint.Print();
-            }
         }
-        private void document_PrintPage(object sender, PrintPageEventArgs e)
+        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
-
-            // Insert code to render the page here.
-            // This code will be called when the control is drawn.
-
-            // The following code will render a simple
-            // message on the printed document.
-            string text = "In document_PrintPage method.";
-            System.Drawing.Font printFont = new System.Drawing.Font
-                ("Arial", 35, System.Drawing.FontStyle.Regular);
-
-            // Draw the content.
-            e.Graphics.DrawString(text, printFont,
-                System.Drawing.Brushes.Black, 10, 10);
+            e.Graphics.DrawImage(graphicDocToPrint, 0, 0);    
         }
     }
 }
