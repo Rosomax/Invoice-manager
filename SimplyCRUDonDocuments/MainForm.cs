@@ -32,6 +32,7 @@ namespace SimplyCRUDonDocuments
         DocsModelContext model = new DocsModelContext();
         DocumentHeader header = new DocumentHeader();
 
+
         public async void GetGitInfo()
         {
             var client = new GitHubClient(new ProductHeaderValue("Invoice-Manager"));
