@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,18 @@ namespace SimplyCRUDonDocuments
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //con = new SqlConnection();
+            //con.ConnectionString = "Data Source=.\\SQLEXPRESS; AttachDbFilename =ApkaWebowa.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
+            //con.Open();
+            //MessageBox.Show("Connection opened");
+            //con.Close();
+            //MessageBox.Show("Connection closed");
             FillGrid();
             GetGitInfo();
         }
         DocsModelContext model = new DocsModelContext();
         DocumentHeader header = new DocumentHeader();
+
         public async void GetGitInfo()
         {
             var client = new GitHubClient(new ProductHeaderValue("Invoice-Manager"));
