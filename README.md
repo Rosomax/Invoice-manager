@@ -1,6 +1,12 @@
 # Invoice-manager
 A simple program for adding, removing, editing and printing invoices. All data stored in sql Database. Aplication use GitHub Api to display data about author and this repo.
 
+To run app in own desktop, must change in file App.config, line 17 
+AttachDbFilename=C:\SimplyCRUDonDocuments\SimplyCRUDonDocuments\DataBase\SimplyCRUDonDocumentsDB.mdf
+to
+AttachDbFilename=C:\|YourDirectory|\SimplyCRUDonDocuments\DataBase\SimplyCRUDonDocumentsDB.mdf
+or place project in C:\
+
 Main Menu
 
 
